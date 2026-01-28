@@ -1,0 +1,467 @@
+/* GLITCHCORE THEME - High Visual Impact */
+
+:root {
+  /* Neon color palette */
+  --glitch-cyan: #00ffff;
+  --glitch-magenta: #ff00ff;
+  --glitch-red: #ff0040;
+  --glitch-green: #00ff66;
+  --glitch-yellow: #ffff00;
+  --glitch-dark: #0a0a0f;
+  --glitch-darker: #050508;
+
+  /* Override slidev theme colors */
+  --slidev-theme-primary: var(--glitch-magenta);
+  --slidev-theme-background: var(--glitch-dark);
+}
+
+/* Base slide styling */
+.slidev-layout {
+  background: var(--glitch-dark) !important;
+  color: #fff;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: 100% !important;
+  padding: 2rem 3rem !important;
+}
+
+/* Ensure slide content container also centers */
+.slidev-layout > * {
+  max-width: 100%;
+}
+
+/* Scanline overlay effect - subtle */
+.slidev-layout::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03),
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(2px); }
+}
+
+/* CRT vignette effect */
+.slidev-layout::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* RGB Split / Chromatic Aberration for headings */
+.glitch-text,
+h1 {
+  position: relative;
+  text-shadow:
+    -2px 0 var(--glitch-cyan),
+    2px 0 var(--glitch-magenta);
+  animation: glitch-skew 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::before,
+h1::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  color: var(--glitch-cyan);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  opacity: 0.8;
+}
+
+.glitch-text::after,
+h1::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 100%;
+  height: 100%;
+  color: var(--glitch-magenta);
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+  opacity: 0.8;
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(-0.5deg); }
+  20% { transform: skew(0.5deg); }
+  30% { transform: skew(0deg); }
+  40% { transform: skew(0.3deg); }
+  50% { transform: skew(-0.3deg); }
+  60% { transform: skew(0deg); }
+  70% { transform: skew(-0.2deg); }
+  80% { transform: skew(0.2deg); }
+  90% { transform: skew(0deg); }
+  100% { transform: skew(0.1deg); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-2px, 0); }
+  10% { clip-path: polygon(0 20%, 100% 20%, 100% 65%, 0 65%); transform: translate(2px, 0); }
+  20% { clip-path: polygon(0 40%, 100% 40%, 100% 85%, 0 85%); transform: translate(-1px, 0); }
+  30% { clip-path: polygon(0 10%, 100% 10%, 100% 55%, 0 55%); transform: translate(1px, 0); }
+  40% { clip-path: polygon(0 30%, 100% 30%, 100% 75%, 0 75%); transform: translate(-2px, 0); }
+  50% { clip-path: polygon(0 50%, 100% 50%, 100% 95%, 0 95%); transform: translate(2px, 0); }
+  60% { clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-1px, 0); }
+  70% { clip-path: polygon(0 25%, 100% 25%, 100% 70%, 0 70%); transform: translate(1px, 0); }
+  80% { clip-path: polygon(0 35%, 100% 35%, 100% 80%, 0 80%); transform: translate(-2px, 0); }
+  90% { clip-path: polygon(0 15%, 100% 15%, 100% 60%, 0 60%); transform: translate(2px, 0); }
+  100% { clip-path: polygon(0 5%, 100% 5%, 100% 50%, 0 50%); transform: translate(0, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); transform: translate(2px, 0); }
+  10% { clip-path: polygon(0 35%, 100% 35%, 100% 80%, 0 80%); transform: translate(-2px, 0); }
+  20% { clip-path: polygon(0 15%, 100% 15%, 100% 60%, 0 60%); transform: translate(1px, 0); }
+  30% { clip-path: polygon(0 45%, 100% 45%, 100% 90%, 0 90%); transform: translate(-1px, 0); }
+  40% { clip-path: polygon(0 25%, 100% 25%, 100% 70%, 0 70%); transform: translate(2px, 0); }
+  50% { clip-path: polygon(0 5%, 100% 5%, 100% 50%, 0 50%); transform: translate(-2px, 0); }
+  60% { clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); transform: translate(1px, 0); }
+  70% { clip-path: polygon(0 30%, 100% 30%, 100% 75%, 0 75%); transform: translate(-1px, 0); }
+  80% { clip-path: polygon(0 20%, 100% 20%, 100% 65%, 0 65%); transform: translate(2px, 0); }
+  90% { clip-path: polygon(0 40%, 100% 40%, 100% 85%, 0 85%); transform: translate(-2px, 0); }
+  100% { clip-path: polygon(0 50%, 100% 50%, 100% 95%, 0 95%); transform: translate(0, 0); }
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noise 0.2s steps(5) infinite;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(5%, 5%); }
+  30% { transform: translate(-5%, 5%); }
+  40% { transform: translate(5%, -5%); }
+  50% { transform: translate(-5%, 0); }
+  60% { transform: translate(5%, 0); }
+  70% { transform: translate(0, 5%); }
+  80% { transform: translate(0, -5%); }
+  90% { transform: translate(-2%, 2%); }
+}
+
+/* VHS tracking distortion */
+.vhs-distort {
+  animation: vhs-tracking 4s ease-in-out infinite;
+}
+
+@keyframes vhs-tracking {
+  0%, 100% { transform: translateX(0) skewX(0deg); filter: brightness(1); }
+  2% { transform: translateX(-3px) skewX(0.5deg); filter: brightness(1.1); }
+  4% { transform: translateX(3px) skewX(-0.5deg); filter: brightness(0.9); }
+  6% { transform: translateX(0) skewX(0deg); filter: brightness(1); }
+}
+
+/* Glitch border effect */
+.glitch-border {
+  border: 2px solid var(--glitch-cyan);
+  box-shadow:
+    -2px 0 var(--glitch-magenta),
+    2px 0 var(--glitch-cyan),
+    0 0 20px rgba(255, 0, 255, 0.3),
+    0 0 40px rgba(0, 255, 255, 0.2);
+  animation: border-glitch 3s infinite;
+}
+
+@keyframes border-glitch {
+  0%, 100% {
+    box-shadow:
+      -2px 0 var(--glitch-magenta),
+      2px 0 var(--glitch-cyan),
+      0 0 20px rgba(255, 0, 255, 0.3),
+      0 0 40px rgba(0, 255, 255, 0.2);
+  }
+  25% {
+    box-shadow:
+      2px 0 var(--glitch-magenta),
+      -2px 0 var(--glitch-cyan),
+      0 0 25px rgba(255, 0, 255, 0.4),
+      0 0 45px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      -3px 0 var(--glitch-cyan),
+      3px 0 var(--glitch-magenta),
+      0 0 30px rgba(0, 255, 255, 0.4),
+      0 0 50px rgba(255, 0, 255, 0.3);
+  }
+  75% {
+    box-shadow:
+      3px 0 var(--glitch-cyan),
+      -3px 0 var(--glitch-magenta),
+      0 0 20px rgba(0, 255, 255, 0.3),
+      0 0 40px rgba(255, 0, 255, 0.2);
+  }
+}
+
+/* Neon glow text effect */
+.neon-cyan {
+  color: var(--glitch-cyan);
+  text-shadow:
+    0 0 5px var(--glitch-cyan),
+    0 0 10px var(--glitch-cyan),
+    0 0 20px var(--glitch-cyan),
+    0 0 40px var(--glitch-cyan);
+}
+
+.neon-magenta {
+  color: var(--glitch-magenta);
+  text-shadow:
+    0 0 5px var(--glitch-magenta),
+    0 0 10px var(--glitch-magenta),
+    0 0 20px var(--glitch-magenta),
+    0 0 40px var(--glitch-magenta);
+}
+
+.neon-red {
+  color: var(--glitch-red);
+  text-shadow:
+    0 0 5px var(--glitch-red),
+    0 0 10px var(--glitch-red),
+    0 0 20px var(--glitch-red),
+    0 0 40px var(--glitch-red);
+}
+
+/* Flicker animation for elements */
+.flicker {
+  animation: flicker 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+/* Data corruption effect */
+.corrupted {
+  position: relative;
+  overflow: hidden;
+}
+
+.corrupted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    transparent 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    transparent 100%
+  );
+  animation: data-corrupt 2s linear infinite;
+}
+
+@keyframes data-corrupt {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Horizontal glitch lines */
+.glitch-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 4px
+  );
+  animation: glitch-lines-move 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes glitch-lines-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* Pixelate effect on hover */
+.pixelate {
+  image-rendering: pixelated;
+  transition: filter 0.3s ease;
+}
+
+.pixelate:hover {
+  filter: blur(0.5px);
+}
+
+/* RGB split on images */
+.rgb-split {
+  position: relative;
+}
+
+.rgb-split img {
+  filter: url('#rgb-split-filter');
+}
+
+/* Heavy glitch for emphasis */
+.heavy-glitch {
+  animation: heavy-glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes heavy-glitch {
+  0% { transform: translate(0); filter: hue-rotate(0deg); }
+  10% { transform: translate(-5px, 2px); filter: hue-rotate(90deg); }
+  20% { transform: translate(5px, -2px); filter: hue-rotate(180deg); }
+  30% { transform: translate(-3px, 1px); filter: hue-rotate(270deg); }
+  40% { transform: translate(3px, -1px); filter: hue-rotate(0deg); }
+  50% { transform: translate(-2px, 2px); filter: hue-rotate(45deg); }
+  60% { transform: translate(2px, -2px); filter: hue-rotate(135deg); }
+  70% { transform: translate(-1px, 1px); filter: hue-rotate(225deg); }
+  80% { transform: translate(1px, -1px); filter: hue-rotate(315deg); }
+  90% { transform: translate(0); filter: hue-rotate(0deg); }
+  100% { transform: translate(-2px, 0); filter: hue-rotate(10deg); }
+}
+
+/* Gradient backgrounds */
+.bg-glitch-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--glitch-darker) 0%,
+    rgba(255, 0, 255, 0.05) 25%,
+    var(--glitch-dark) 50%,
+    rgba(0, 255, 255, 0.05) 75%,
+    var(--glitch-darker) 100%
+  );
+}
+
+/* Code block styling */
+.slidev-code {
+  border: 1px solid var(--glitch-cyan) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  background: rgba(10, 10, 15, 0.9) !important;
+}
+
+/* Quote styling */
+.slidev-layout.quote {
+  background: linear-gradient(
+    135deg,
+    var(--glitch-darker),
+    rgba(255, 0, 255, 0.1),
+    var(--glitch-dark)
+  ) !important;
+}
+
+/* Section divider styling */
+.slidev-layout.section h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Button/link styling */
+a {
+  color: var(--glitch-cyan);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--glitch-magenta);
+  text-shadow: 0 0 10px var(--glitch-magenta);
+}
+
+/* Utility classes */
+.text-glitch-cyan { color: var(--glitch-cyan); }
+.text-glitch-magenta { color: var(--glitch-magenta); }
+.text-glitch-red { color: var(--glitch-red); }
+.text-glitch-green { color: var(--glitch-green); }
+.text-glitch-yellow { color: var(--glitch-yellow); }
+
+.bg-glitch-dark { background-color: var(--glitch-dark); }
+.bg-glitch-darker { background-color: var(--glitch-darker); }
+
+/* Override default pink to magenta */
+.text-pink-400, .text-pink-500 { color: var(--glitch-magenta) !important; }
+.text-fuchsia-400, .text-fuchsia-500 { color: var(--glitch-cyan) !important; }
+.text-purple-400, .text-purple-500 { color: var(--glitch-red) !important; }
+
+.bg-pink-500\/10, .bg-pink-500\/20 { background-color: rgba(255, 0, 255, 0.1) !important; }
+.bg-fuchsia-500\/10, .bg-fuchsia-500\/20 { background-color: rgba(0, 255, 255, 0.1) !important; }
+.bg-purple-500\/10, .bg-purple-500\/20 { background-color: rgba(255, 0, 64, 0.1) !important; }
+
+.border-pink-500 { border-color: var(--glitch-magenta) !important; }
+.border-fuchsia-500 { border-color: var(--glitch-cyan) !important; }
+
+/* Gradient text override */
+.bg-gradient-to-r.from-pink-400.to-fuchsia-500 {
+  background: linear-gradient(90deg, var(--glitch-magenta), var(--glitch-cyan)) !important;
+}
+
+/* Interactive elements */
+.interactive-glitch {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.interactive-glitch:hover {
+  animation: heavy-glitch 0.3s ease;
+}
+
+/* Print / export mode - reduce effects */
+@media print {
+  .slidev-layout::before,
+  .slidev-layout::after,
+  .noise-overlay {
+    display: none !important;
+  }
+
+  h1 {
+    animation: none !important;
+    text-shadow: none !important;
+  }
+}

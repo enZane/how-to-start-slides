@@ -1,0 +1,425 @@
+/* ==========================================
+   GLITCHCORE TRANSITIONS FOR SLIDEV
+   ========================================== */
+
+/*
+ * Transition: glitch
+ * A distorted, RGB-split glitch effect
+ */
+.glitch-enter-active,
+.glitch-leave-active {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glitch-enter-from {
+  opacity: 0;
+  filter: blur(4px) hue-rotate(90deg) saturate(2);
+  transform: translateX(40px) skewX(8deg) scale(1.02);
+  clip-path: inset(0 0 0 100%);
+}
+
+.glitch-leave-to {
+  opacity: 0;
+  filter: blur(4px) hue-rotate(-90deg) saturate(2);
+  transform: translateX(-40px) skewX(-8deg) scale(0.98);
+  clip-path: inset(0 100% 0 0);
+}
+
+/*
+ * Transition: corrupt
+ * Stepped, digital corruption effect
+ */
+.corrupt-enter-active {
+  animation: corrupt-in 0.4s steps(6) forwards;
+}
+
+.corrupt-leave-active {
+  animation: corrupt-out 0.4s steps(6) forwards;
+}
+
+@keyframes corrupt-in {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    filter: brightness(2) contrast(2);
+  }
+  20% {
+    clip-path: polygon(0 0, 30% 0, 25% 100%, 0 100%);
+    filter: brightness(1.5) hue-rotate(90deg);
+  }
+  40% {
+    clip-path: polygon(0 0, 50% 0, 60% 100%, 0 100%);
+    filter: brightness(1.2) hue-rotate(45deg);
+  }
+  60% {
+    clip-path: polygon(0 0, 80% 0, 70% 100%, 0 100%);
+    filter: brightness(1.1) hue-rotate(20deg);
+  }
+  80% {
+    clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    filter: none;
+  }
+}
+
+@keyframes corrupt-out {
+  0% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    filter: none;
+  }
+  20% {
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
+    filter: hue-rotate(-20deg);
+  }
+  40% {
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 30% 100%);
+    filter: hue-rotate(-45deg);
+  }
+  60% {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 40% 100%);
+    filter: hue-rotate(-90deg) brightness(1.2);
+  }
+  80% {
+    clip-path: polygon(70% 0, 100% 0, 100% 100%, 80% 100%);
+    filter: brightness(1.5) contrast(2);
+  }
+  100% {
+    opacity: 0;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    filter: brightness(2) contrast(2);
+  }
+}
+
+/*
+ * Transition: pixel
+ * Pixelated dissolve effect
+ */
+.pixel-enter-active {
+  animation: pixel-in 0.5s steps(8) forwards;
+}
+
+.pixel-leave-active {
+  animation: pixel-out 0.5s steps(8) forwards;
+}
+
+@keyframes pixel-in {
+  0% {
+    opacity: 0;
+    filter: blur(20px) brightness(2);
+    transform: scale(1.1);
+  }
+  25% {
+    opacity: 0.3;
+    filter: blur(15px) brightness(1.5) hue-rotate(60deg);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(8px) brightness(1.2) hue-rotate(30deg);
+  }
+  75% {
+    opacity: 0.9;
+    filter: blur(3px) brightness(1.1);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+@keyframes pixel-out {
+  0% {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.9;
+    filter: blur(3px) brightness(1.1);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(8px) brightness(1.2) hue-rotate(-30deg);
+  }
+  75% {
+    opacity: 0.3;
+    filter: blur(15px) brightness(1.5) hue-rotate(-60deg);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(20px) brightness(2);
+    transform: scale(0.9);
+  }
+}
+
+/*
+ * Transition: vhs
+ * VHS tracking distortion effect
+ */
+.vhs-enter-active {
+  animation: vhs-in 0.6s ease-out forwards;
+}
+
+.vhs-leave-active {
+  animation: vhs-out 0.6s ease-in forwards;
+}
+
+@keyframes vhs-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scaleY(0.8);
+    filter: blur(2px) saturate(0);
+  }
+  20% {
+    transform: translateY(-5px) scaleY(1.1) skewX(2deg);
+    filter: blur(1px) saturate(1.5) hue-rotate(10deg);
+  }
+  40% {
+    transform: translateY(3px) scaleY(0.95) skewX(-1deg);
+    filter: saturate(1.2) hue-rotate(-5deg);
+  }
+  60% {
+    transform: translateY(-2px) scaleY(1.02);
+    filter: saturate(1.1);
+  }
+  80% {
+    transform: translateY(1px) scaleY(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1) skewX(0);
+    filter: none;
+  }
+}
+
+@keyframes vhs-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    filter: none;
+  }
+  30% {
+    transform: translateY(-3px) scaleY(1.05) skewX(-2deg);
+    filter: saturate(1.3) hue-rotate(-10deg);
+  }
+  60% {
+    transform: translateY(5px) scaleY(0.9) skewX(3deg);
+    filter: blur(1px) saturate(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px) scaleY(0.5);
+    filter: blur(3px) saturate(0);
+  }
+}
+
+/*
+ * Transition: cyber
+ * Cyberpunk-style slice transition
+ */
+.cyber-enter-active,
+.cyber-leave-active {
+  transition: all 0.4s ease;
+}
+
+.cyber-enter-from {
+  opacity: 0;
+  transform: translateX(100%) skewX(-10deg);
+  filter: hue-rotate(180deg) brightness(1.5);
+}
+
+.cyber-leave-to {
+  opacity: 0;
+  transform: translateX(-100%) skewX(10deg);
+  filter: hue-rotate(-180deg) brightness(1.5);
+}
+
+/*
+ * Transition: bug
+ * Intense system malfunction / real bug effect
+ * Screen tears, flickers, distorts like something is breaking
+ */
+.bug-enter-active {
+  animation: bug-in 1.2s steps(1) forwards;
+}
+
+.bug-leave-active {
+  animation: bug-out 0.8s steps(1) forwards;
+}
+
+@keyframes bug-out {
+  0% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  5% {
+    opacity: 1;
+    transform: translateX(-100%) skewX(-40deg);
+    filter: hue-rotate(180deg) saturate(5) brightness(3);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(50px) translateY(-20px) skewY(5deg);
+    filter: invert(1) hue-rotate(90deg);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 25%);
+  }
+  15% {
+    opacity: 0;
+    transform: scale(1.5) rotate(2deg);
+    filter: saturate(10) contrast(5);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-30px) scaleX(0.5);
+    filter: hue-rotate(-90deg) blur(3px);
+    clip-path: polygon(0 40%, 100% 35%, 100% 70%, 0 65%);
+  }
+  25% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(100px) skewX(20deg);
+    filter: brightness(5) saturate(0);
+  }
+  35% {
+    opacity: 1;
+    transform: translateX(200%) rotate(-5deg);
+    filter: hue-rotate(270deg) contrast(3);
+    clip-path: polygon(0 60%, 100% 55%, 100% 100%, 0 100%);
+  }
+  40% {
+    opacity: 0;
+    transform: scale(0.1) rotate(180deg);
+    filter: blur(20px);
+  }
+  45%, 50% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(0.01);
+    filter: brightness(10);
+  }
+  55% {
+    opacity: 0;
+    transform: none;
+  }
+  60% {
+    opacity: 0.5;
+    transform: translateX(100px) skewX(-30deg) scaleY(2);
+    filter: hue-rotate(45deg) saturate(8);
+  }
+  65%, 100% {
+    opacity: 0;
+    transform: translateY(-100%) rotate(10deg);
+    filter: blur(10px) brightness(0);
+  }
+}
+
+@keyframes bug-in {
+  0%, 5% {
+    opacity: 0;
+    transform: translateY(100%) rotate(-10deg);
+    filter: blur(20px) brightness(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-200%) skewX(40deg);
+    filter: hue-rotate(180deg) saturate(10) brightness(5);
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 0 25%);
+  }
+  15% {
+    opacity: 0;
+    transform: scale(3) rotate(-3deg);
+    filter: invert(1);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(100px) scaleY(0.02);
+    filter: brightness(10) saturate(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-50px) skewY(-10deg);
+    filter: hue-rotate(-120deg) contrast(5);
+    clip-path: polygon(0 20%, 100% 15%, 100% 50%, 0 55%);
+  }
+  30% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+    transform: translateX(-80px) rotate(5deg) scaleX(1.5);
+    filter: saturate(8) hue-rotate(90deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(50%) skewX(-20deg);
+    filter: blur(5px) brightness(3);
+    clip-path: polygon(0 45%, 100% 40%, 100% 80%, 0 85%);
+  }
+  45% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-200px);
+    filter: hue-rotate(270deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(0.1) translateX(500px);
+    filter: brightness(8) contrast(10);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(-2deg) skewX(5deg);
+    filter: hue-rotate(30deg) saturate(3);
+    clip-path: polygon(0 70%, 100% 65%, 100% 100%, 0 100%);
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(50px) scale(1.2);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(-20px) skewY(3deg);
+    filter: saturate(2) hue-rotate(-20deg) brightness(1.5);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(10px);
+    filter: saturate(1.5) brightness(1.2);
+  }
+  75% {
+    opacity: 0.8;
+    transform: skewX(-2deg);
+    filter: hue-rotate(10deg);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-5px);
+    filter: brightness(1.1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(3px) skewX(1deg);
+    filter: saturate(1.1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(2px);
+    filter: brightness(1.05);
+  }
+  95% {
+    opacity: 1;
+    transform: translateX(-1px);
+    filter: none;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
